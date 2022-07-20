@@ -22,4 +22,7 @@ private:
 
 public:
     main_window(QWidget* parent = nullptr);
+
+private slots:
+    void on_action_exit_triggered();
 };

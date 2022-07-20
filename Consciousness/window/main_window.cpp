@@ -13,3 +13,8 @@ main_window::main_window(QWidget* parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 }
+
+void main_window::on_action_exit_triggered()
+{
+    QApplication::quit();
+}
