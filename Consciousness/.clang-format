@@ -1,7 +1,8 @@
 Language: Cpp
 BasedOnStyle: Microsoft
 AccessModifierOffset: -4
-AlwaysBreakTemplateDeclarations : Yes
+AllowShortFunctionsOnASingleLine: All
+AlwaysBreakTemplateDeclarations: Yes
 BraceWrapping:
   AfterCaseLabel: true
   AfterUnion: true
