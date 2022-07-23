@@ -13,6 +13,9 @@
 
 #include <QMainWindow>
 
+#include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
+#include <utils/lock_view.hpp>
+
 class main_window : public QMainWindow
 {
     Q_OBJECT
@@ -25,4 +28,9 @@ public:
 
 private slots:
     void on_action_exit_triggered();
+
+private:
+    consciousness::config_store _config_store_value;
+    utils::lock_viewer<consciousness::config_store> config_store{
+        _config_store_value};
 };
