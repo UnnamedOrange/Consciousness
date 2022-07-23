@@ -33,5 +33,11 @@
         <source>&amp;Exit</source>
         <translation>退出(&amp;E)</translation>
     </message>
+    <message>
+        <location filename="../window/main_window.cpp" line="53"/>
+        <location filename="../window/main_window.cpp" line="53"/>
+        <source>New Item...</source>
+        <translation>新项目……</translation>
+    </message>
 </context>
 </TS>

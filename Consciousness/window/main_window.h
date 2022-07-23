@@ -25,6 +25,7 @@ private:
 
 public:
     main_window(QWidget* parent = nullptr);
+    ~main_window();
 
 private slots:
     void on_action_exit_triggered();
@@ -33,4 +34,8 @@ private:
     consciousness::config_store _config_store_value;
     utils::lock_viewer<consciousness::config_store> config_store{
         _config_store_value};
+
+private:
+    void init_list();
+    void add_dummy_item();
 };

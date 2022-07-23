@@ -19,8 +19,14 @@ namespace consciousness
     class config_store : protected std::vector<record_t>
     {
     public:
+        using vector::begin;
+        using vector::cbegin;
+        using vector::cend;
         using vector::clear;
+        using vector::emplace_back;
+        using vector::end;
         using vector::push_back;
+        using vector::size;
         using vector::operator[];
 
     public:
