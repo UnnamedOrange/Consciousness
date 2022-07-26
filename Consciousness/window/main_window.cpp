@@ -39,6 +39,7 @@ void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
         item->setText(handle_window_name(
             QString::fromStdU16String(cs->back().window_name)));
         add_dummy_item();
+        on_listWidget_windows_itemSelectionChanged();
     }
 }
 void main_window::on_listWidget_windows_itemSelectionChanged()
