@@ -36,7 +36,8 @@ void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
     {
         auto cs = config_store.lock();
         cs->emplace_back();
-        item->setText(QString::fromStdU16String(cs->back().window_name));
+        item->setText(handle_window_name(
+            QString::fromStdU16String(cs->back().window_name)));
         add_dummy_item();
     }
 }
@@ -63,7 +64,7 @@ void main_window::on_listWidget_windows_itemSelectionChanged()
 void main_window::on_lineEdit_window_name_textEdited(const QString& arg1)
 {
     int index = ui.listWidget_windows->currentRow();
-    ui.listWidget_windows->currentItem()->setText(arg1);
+    ui.listWidget_windows->currentItem()->setText(handle_window_name(arg1));
     auto cs = config_store.lock();
     (*cs)[index].window_name = arg1.toStdU16String();
 }
@@ -91,7 +92,7 @@ void main_window::init_list()
     for (const auto& item : *cs)
     {
         ui.listWidget_windows->addItem(
-            QString::fromStdU16String(item.window_name));
+            handle_window_name(QString::fromStdU16String(item.window_name)));
     }
 
     // Add a dummy item to list.
@@ -105,4 +106,10 @@ void main_window::enable_edit_widgets(bool enable)
 {
     ui.lineEdit_window_name->setEnabled(enable);
     ui.lineEdit_window_class_name->setEnabled(enable);
+}
+QString main_window::handle_window_name(const QString& name)
+{
+    if (name.isEmpty())
+        return tr("(Window name not set)");
+    return name;
 }

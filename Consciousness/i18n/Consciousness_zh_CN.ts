@@ -34,10 +34,16 @@
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="102"/>
-        <location filename="../window/main_window.cpp" line="102"/>
+        <location filename="../window/main_window.cpp" line="103"/>
+        <location filename="../window/main_window.cpp" line="103"/>
         <source>New Item...</source>
         <translation>新项目……</translation>
+    </message>
+    <message>
+        <location filename="../window/main_window.cpp" line="113"/>
+        <location filename="../window/main_window.cpp" line="113"/>
+        <source>(Window name not set)</source>
+        <translation>（未指定窗口名）</translation>
     </message>
 </context>
 </TS>

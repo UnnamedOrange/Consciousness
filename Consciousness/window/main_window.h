@@ -12,6 +12,7 @@
 #include "./ui_main_window.h"
 
 #include <QMainWindow>
+#include <QString>
 
 #include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
 #include <utils/lock_view.hpp>
@@ -43,4 +44,5 @@ private:
     void init_list();
     void add_dummy_item();
     void enable_edit_widgets(bool enable);
+    static QString handle_window_name(const QString& name);
 };
