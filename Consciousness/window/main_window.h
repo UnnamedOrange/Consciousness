@@ -31,6 +31,8 @@ private slots:
     void on_action_exit_triggered();
     void on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item);
     void on_listWidget_windows_itemSelectionChanged();
+    void on_lineEdit_window_name_textEdited(const QString& arg1);
+    void on_lineEdit_window_class_name_textEdited(const QString& arg1);
 
 private:
     consciousness::config_store _config_store_value;

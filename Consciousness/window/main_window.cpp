@@ -60,6 +60,19 @@ void main_window::on_listWidget_windows_itemSelectionChanged()
         QString::fromStdU16String(record.window_class_name));
     enable_edit_widgets(true);
 }
+void main_window::on_lineEdit_window_name_textEdited(const QString& arg1)
+{
+    int index = ui.listWidget_windows->currentRow();
+    ui.listWidget_windows->currentItem()->setText(arg1);
+    auto cs = config_store.lock();
+    (*cs)[index].window_name = arg1.toStdU16String();
+}
+void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
+{
+    int index = ui.listWidget_windows->currentRow();
+    auto cs = config_store.lock();
+    (*cs)[index].window_class_name = arg1.toStdU16String();
+}
 
 void main_window::init_list()
 {
