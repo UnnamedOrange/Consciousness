@@ -19,10 +19,10 @@ namespace utils
     {
     private:
         value_type& _ref;
-        std::mutex& _mutex;
+        std::recursive_mutex& _mutex;
 
     public:
-        _lock_view(value_type& ref, std::mutex& mutex)
+        _lock_view(value_type& ref, std::recursive_mutex& mutex)
             : _ref(ref), _mutex(mutex)
         {
             _mutex.lock();
@@ -40,7 +40,7 @@ namespace utils
 
     private:
         value_type& _ref;
-        std::mutex _mutex;
+        std::recursive_mutex _mutex;
 
     public:
         lock_viewer(value_type& ref) : _ref(ref) {}
