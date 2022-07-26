@@ -29,6 +29,8 @@ public:
 
 private slots:
     void on_action_exit_triggered();
+    void on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item);
+    void on_listWidget_windows_itemSelectionChanged();
 
 private:
     consciousness::config_store _config_store_value;
@@ -38,4 +40,5 @@ private:
 private:
     void init_list();
     void add_dummy_item();
+    void enable_edit_widgets(bool enable);
 };
