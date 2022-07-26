@@ -10,6 +10,8 @@
 #include "main_window.h"
 
 #include <QDebug>
+#include <QDir>
+#include <QStringList>
 
 #include <core/config_store.h>
 #include <core/record.h>
@@ -18,6 +20,29 @@ main_window::main_window(QWidget* parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 
+    // Initialize the language menu.
+    QDir dir(":/i18n");
+    QStringList filters;
+    filters << "*.qm";
+    QStringList languages = dir.entryList(filters);
+    for (const QString& language : languages)
+    {
+        QString lang = language.split(".")[0];
+        ui.menu_language->addAction(
+            lang, this, &main_window::on_action_change_language_triggered);
+    }
+
+    // Initialize the list.
+    auto cs = config_store.lock();
+    try
+    {
+        cs->from_file();
+    }
+    catch (const std::runtime_error& e)
+    {
+        qDebug() << e.what();
+        cs->clear(); // If failed, start with empty list.
+    }
     init_list();
     enable_edit_widgets(false);
 }
@@ -28,6 +53,7 @@ main_window::~main_window()
 }
 
 void main_window::on_action_exit_triggered() { QApplication::quit(); }
+void main_window::on_action_system_default_triggered() { change_language(); }
 void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
 {
     // If the last item (New item...) is double clicked, add a new item.
@@ -76,18 +102,31 @@ void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
     (*cs)[index].window_class_name = arg1.toStdU16String();
 }
 
+void main_window::on_action_change_language_triggered()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    QString lang = action->text();
+    change_language(lang);
+}
+void main_window::change_language(const QString& language_base_name)
+{
+    if (language_base_name.isEmpty())
+        utils::i18n::change_language_to_system_default();
+    else
+        utils::i18n::change_language(language_base_name);
+    ui.retranslateUi(this);
+    init_list();
+}
+
 void main_window::init_list()
 {
     auto cs = config_store.lock();
-    try
-    {
-        cs->from_file();
-    }
-    catch (const std::runtime_error& e)
-    {
-        qDebug() << e.what();
-        cs->clear(); // If failed, start with empty list.
-    }
+
+    // Store current index.
+    int index = ui.listWidget_windows->currentRow();
+
+    // Clear the list.
+    ui.listWidget_windows->clear();
 
     // Add existing items to list.
     for (const auto& item : *cs)
@@ -98,6 +137,10 @@ void main_window::init_list()
 
     // Add a dummy item to list.
     add_dummy_item();
+
+    // Restore current index.
+    if (index != -1)
+        ui.listWidget_windows->setCurrentRow(index);
 }
 void main_window::add_dummy_item()
 {

@@ -13,8 +13,10 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QTranslator>
 
 #include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
+#include <utils/i18n.hpp>
 #include <utils/lock_view.hpp>
 
 class main_window : public QMainWindow
@@ -30,10 +32,17 @@ public:
 
 private slots:
     void on_action_exit_triggered();
+    void on_action_system_default_triggered();
     void on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item);
     void on_listWidget_windows_itemSelectionChanged();
     void on_lineEdit_window_name_textEdited(const QString& arg1);
     void on_lineEdit_window_class_name_textEdited(const QString& arg1);
+
+private slots:
+    void on_action_change_language_triggered();
+
+private:
+    void change_language(const QString& language_base_name = "");
 
 private:
     consciousness::config_store _config_store_value;

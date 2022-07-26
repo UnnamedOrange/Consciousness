@@ -118,11 +118,24 @@
     </property>
     <addaction name="action_exit"/>
    </widget>
+   <widget class="QMenu" name="menu_language">
+    <property name="title">
+     <string>&amp;Language</string>
+    </property>
+    <addaction name="action_system_default"/>
+    <addaction name="separator"/>
+   </widget>
    <addaction name="menu_program"/>
+   <addaction name="menu_language"/>
   </widget>
   <action name="action_exit">
    <property name="text">
     <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="action_system_default">
+   <property name="text">
+    <string>System Default</string>
    </property>
   </action>
  </widget>
