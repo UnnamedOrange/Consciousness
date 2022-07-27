@@ -69,7 +69,7 @@ void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
 void main_window::on_listWidget_windows_itemSelectionChanged()
 {
     int index = ui.listWidget_windows->currentRow();
-    if (!ui.listWidget_windows->currentItem()->isSelected())
+    if (~index && !ui.listWidget_windows->currentItem()->isSelected())
         index = -1;
     if (index == -1 || index == ui.listWidget_windows->count() - 1)
     {
@@ -125,6 +125,8 @@ void main_window::init_list()
 
     // Store current index.
     int index = ui.listWidget_windows->currentRow();
+    if (~index && !ui.listWidget_windows->currentItem()->isSelected())
+        index = -1;
 
     // Clear the list.
     ui.listWidget_windows->clear();

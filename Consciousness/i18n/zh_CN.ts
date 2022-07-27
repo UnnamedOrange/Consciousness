@@ -46,14 +46,14 @@
         <translation>系统默认 / System Default</translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="148"/>
-        <location filename="../window/main_window.cpp" line="148"/>
+        <location filename="../window/main_window.cpp" line="150"/>
+        <location filename="../window/main_window.cpp" line="150"/>
         <source>New Item...</source>
         <translation>新项目……</translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="158"/>
-        <location filename="../window/main_window.cpp" line="158"/>
+        <location filename="../window/main_window.cpp" line="160"/>
+        <location filename="../window/main_window.cpp" line="160"/>
         <source>(Window name not set)</source>
         <translation>（未指定窗口名）</translation>
     </message>
