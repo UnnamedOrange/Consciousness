@@ -46,14 +46,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="147"/>
-        <location filename="../window/main_window.cpp" line="147"/>
+        <location filename="../window/main_window.cpp" line="148"/>
+        <location filename="../window/main_window.cpp" line="148"/>
         <source>New Item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="157"/>
-        <location filename="../window/main_window.cpp" line="157"/>
+        <location filename="../window/main_window.cpp" line="158"/>
+        <location filename="../window/main_window.cpp" line="158"/>
         <source>(Window name not set)</source>
         <translation type="unfinished"></translation>
     </message>

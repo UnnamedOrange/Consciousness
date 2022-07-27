@@ -18,7 +18,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
-set(TS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/i18n/en_US.ts"
+set(TS_FILES "${CMAKE_CURRENT_SOURCE_DIR}/i18n/en.ts"
              "${CMAKE_CURRENT_SOURCE_DIR}/i18n/zh_CN.ts"
 )
 

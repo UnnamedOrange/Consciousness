@@ -9,6 +9,8 @@
 
 #include "main_window.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QDir>
 #include <QStringList>
@@ -21,15 +23,11 @@ main_window::main_window(QWidget* parent) : QMainWindow(parent)
     ui.setupUi(this);
 
     // Initialize the language menu.
-    QDir dir(":/i18n");
-    QStringList filters;
-    filters << "*.qm";
-    QStringList languages = dir.entryList(filters);
-    for (const QString& language : languages)
+    for (const auto& language : available_languages)
     {
-        QString lang = language.split(".")[0];
         ui.menu_language->addAction(
-            lang, this, &main_window::on_action_change_language_triggered);
+            language.name, this,
+            &main_window::on_action_change_language_triggered);
     }
 
     // Initialize the list.
@@ -105,15 +103,18 @@ void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
 void main_window::on_action_change_language_triggered()
 {
     QAction* action = qobject_cast<QAction*>(sender());
-    QString lang = action->text();
-    change_language(lang);
+    QString lang_name = action->text();
+    auto it = std::find_if(
+        available_languages.begin(), available_languages.end(),
+        [&lang_name](const auto& lang) { return lang.name == lang_name; });
+    change_language(it->code);
 }
-void main_window::change_language(const QString& language_base_name)
+void main_window::change_language(const QString& language_code)
 {
-    if (language_base_name.isEmpty())
+    if (language_code.isEmpty())
         utils::i18n::change_language_to_system_default();
     else
-        utils::i18n::change_language(language_base_name);
+        utils::i18n::change_language(language_code);
     ui.retranslateUi(this);
     init_list();
 }

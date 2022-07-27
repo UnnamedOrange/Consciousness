@@ -38,11 +38,15 @@ private slots:
     void on_lineEdit_window_name_textEdited(const QString& arg1);
     void on_lineEdit_window_class_name_textEdited(const QString& arg1);
 
+private:
+    std::vector<utils::language_info_t> available_languages{
+        utils::i18n::available_languages()};
+
 private slots:
     void on_action_change_language_triggered();
 
 private:
-    void change_language(const QString& language_base_name = "");
+    void change_language(const QString& language_code = "");
 
 private:
     consciousness::config_store _config_store_value;

@@ -9,12 +9,23 @@
 
 #pragma once
 
+#include <vector>
+
 #include <QApplication>
+#include <QDir>
 #include <QLocale>
+#include <QObject>
+#include <QStringList>
 #include <QTranslator>
 
 namespace utils
 {
+    struct language_info_t
+    {
+        QString code;
+        QString name;
+    };
+
     class i18n
     {
     private:
@@ -44,6 +55,21 @@ namespace utils
 
             if (translator.load(":/i18n/" + language_base_name))
                 a.installTranslator(&translator);
+        }
+        static auto available_languages()
+        {
+            std::vector<language_info_t> ret;
+            QDir dir(":/i18n");
+            QStringList filters;
+            filters << "*.qm";
+            auto languages = dir.entryList(filters);
+            for (auto& language : languages)
+            {
+                language = language.split(".")[0];
+                QLocale locale(language);
+                ret.emplace_back(language, locale.nativeLanguageName());
+            }
+            return ret;
         }
     };
 } // namespace utils
