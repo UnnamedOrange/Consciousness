@@ -25,25 +25,25 @@
         <location filename="../window/main_window.ui" line="117"/>
         <location filename="../window/main_window.ui" line="117"/>
         <source>&amp;Program</source>
-        <translation>程序(&amp;P)</translation>
+        <translation>程序 (&amp;P)</translation>
     </message>
     <message>
         <location filename="../window/main_window.ui" line="123"/>
         <location filename="../window/main_window.ui" line="123"/>
         <source>&amp;Language</source>
-        <translation>语言(&amp;L)</translation>
+        <translation>语言 / &amp;Language</translation>
     </message>
     <message>
         <location filename="../window/main_window.ui" line="133"/>
         <location filename="../window/main_window.ui" line="133"/>
         <source>&amp;Exit</source>
-        <translation>退出(&amp;E)</translation>
+        <translation>退出 (&amp;E)</translation>
     </message>
     <message>
         <location filename="../window/main_window.ui" line="138"/>
         <location filename="../window/main_window.ui" line="138"/>
         <source>System Default</source>
-        <translation>系统默认</translation>
+        <translation>系统默认 / System Default</translation>
     </message>
     <message>
         <location filename="../window/main_window.cpp" line="148"/>
