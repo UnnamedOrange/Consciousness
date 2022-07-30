@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "./ui_main_window.h"
+#include "ui_main_window.h"
 
 #include <QMainWindow>
 #include <QString>
