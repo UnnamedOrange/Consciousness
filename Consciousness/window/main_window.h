@@ -34,7 +34,7 @@ private slots:
     void on_action_exit_triggered();
     void on_action_system_default_triggered();
     void on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item);
-    void on_listWidget_windows_itemSelectionChanged();
+    void _on_listWidget_windows_selection_changed();
     void on_lineEdit_window_name_textEdited(const QString& arg1);
     void on_lineEdit_window_class_name_textEdited(const QString& arg1);
     void on_button_delete_clicked();

@@ -43,6 +43,12 @@ main_window::main_window(QWidget* parent) : QMainWindow(parent)
     }
     init_list();
     enable_edit_widgets(false);
+
+    // Link signals.
+    connect(ui.listWidget_windows, &QListWidget::currentRowChanged, this,
+            &main_window::_on_listWidget_windows_selection_changed);
+    connect(ui.listWidget_windows, &QListWidget::itemSelectionChanged, this,
+            &main_window::_on_listWidget_windows_selection_changed);
 }
 main_window::~main_window()
 {
@@ -63,10 +69,10 @@ void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
         item->setText(handle_window_name(
             QString::fromStdU16String(cs->back().window_name)));
         add_dummy_item();
-        on_listWidget_windows_itemSelectionChanged();
+        _on_listWidget_windows_selection_changed();
     }
 }
-void main_window::on_listWidget_windows_itemSelectionChanged()
+void main_window::_on_listWidget_windows_selection_changed()
 {
     int index = ui.listWidget_windows->currentRow();
     if (~index && !ui.listWidget_windows->currentItem()->isSelected())
@@ -117,7 +123,7 @@ void main_window::on_button_delete_clicked()
     if (index >= ui.listWidget_windows->count())
         index = ui.listWidget_windows->count() - 1;
     ui.listWidget_windows->setCurrentRow(index);
-    on_listWidget_windows_itemSelectionChanged();
+    _on_listWidget_windows_selection_changed();
 }
 
 void main_window::on_action_change_language_triggered()
