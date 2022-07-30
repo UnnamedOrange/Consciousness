@@ -37,6 +37,7 @@ private slots:
     void on_listWidget_windows_itemSelectionChanged();
     void on_lineEdit_window_name_textEdited(const QString& arg1);
     void on_lineEdit_window_class_name_textEdited(const QString& arg1);
+    void on_button_delete_clicked();
 
 private:
     std::vector<utils::language_info_t> available_languages{

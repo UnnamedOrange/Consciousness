@@ -22,38 +22,44 @@
         <translation>窗口类名</translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="117"/>
-        <location filename="../window/main_window.ui" line="117"/>
+        <location filename="../window/main_window.ui" line="107"/>
+        <location filename="../window/main_window.ui" line="107"/>
+        <source>Delete</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <location filename="../window/main_window.ui" line="141"/>
+        <location filename="../window/main_window.ui" line="141"/>
         <source>&amp;Program</source>
         <translation>程序 (&amp;P)</translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="123"/>
-        <location filename="../window/main_window.ui" line="123"/>
+        <location filename="../window/main_window.ui" line="147"/>
+        <location filename="../window/main_window.ui" line="147"/>
         <source>&amp;Language</source>
         <translation>语言 / &amp;Language</translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="133"/>
-        <location filename="../window/main_window.ui" line="133"/>
+        <location filename="../window/main_window.ui" line="157"/>
+        <location filename="../window/main_window.ui" line="157"/>
         <source>&amp;Exit</source>
         <translation>退出 (&amp;E)</translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="138"/>
-        <location filename="../window/main_window.ui" line="138"/>
+        <location filename="../window/main_window.ui" line="162"/>
+        <location filename="../window/main_window.ui" line="162"/>
         <source>System Default</source>
         <translation>系统默认 / System Default</translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="150"/>
-        <location filename="../window/main_window.cpp" line="150"/>
+        <location filename="../window/main_window.cpp" line="170"/>
+        <location filename="../window/main_window.cpp" line="170"/>
         <source>New Item...</source>
         <translation>新项目……</translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="160"/>
-        <location filename="../window/main_window.cpp" line="160"/>
+        <location filename="../window/main_window.cpp" line="181"/>
+        <location filename="../window/main_window.cpp" line="181"/>
         <source>(Window name not set)</source>
         <translation>（未指定窗口名）</translation>
     </message>

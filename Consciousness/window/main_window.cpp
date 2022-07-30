@@ -99,6 +99,26 @@ void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
     auto cs = config_store.lock();
     (*cs)[index].window_class_name = arg1.toStdU16String();
 }
+void main_window::on_button_delete_clicked()
+{
+    // Get the index of the selected item.
+    int index = ui.listWidget_windows->currentRow();
+    if (~index && !ui.listWidget_windows->currentItem()->isSelected())
+        index = -1;
+    if (index == -1 || index == ui.listWidget_windows->count() - 1)
+        return;
+
+    // Remove the item from the list.
+    auto cs = config_store.lock();
+    cs->erase(cs->begin() + index);
+    ui.listWidget_windows->takeItem(index);
+
+    // Update the current item.
+    if (index >= ui.listWidget_windows->count())
+        index = ui.listWidget_windows->count() - 1;
+    ui.listWidget_windows->setCurrentRow(index);
+    on_listWidget_windows_itemSelectionChanged();
+}
 
 void main_window::on_action_change_language_triggered()
 {
@@ -153,6 +173,7 @@ void main_window::enable_edit_widgets(bool enable)
 {
     ui.lineEdit_window_name->setEnabled(enable);
     ui.lineEdit_window_class_name->setEnabled(enable);
+    ui.button_delete->setEnabled(enable);
 }
 QString main_window::handle_window_name(const QString& name)
 {
