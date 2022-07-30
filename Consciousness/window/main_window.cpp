@@ -125,6 +125,10 @@ void main_window::on_button_delete_clicked()
     ui.listWidget_windows->setCurrentRow(index);
     _on_listWidget_windows_selection_changed();
 }
+void main_window::on_listWidget_windows_delete_key_pressed()
+{
+    on_button_delete_clicked();
+}
 
 void main_window::on_action_change_language_triggered()
 {
