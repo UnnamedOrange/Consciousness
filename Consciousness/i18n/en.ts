@@ -64,4 +64,19 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>tray</name>
+    <message>
+        <location filename="../window/tray.cpp" line="35"/>
+        <location filename="../window/tray.cpp" line="35"/>
+        <source>&amp;Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../window/tray.cpp" line="38"/>
+        <location filename="../window/tray.cpp" line="38"/>
+        <source>&amp;Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 </TS>

@@ -64,4 +64,19 @@
         <translation>（未指定窗口名）</translation>
     </message>
 </context>
+<context>
+    <name>tray</name>
+    <message>
+        <location filename="../window/tray.cpp" line="35"/>
+        <location filename="../window/tray.cpp" line="35"/>
+        <source>&amp;Main Window</source>
+        <translation>主窗口 (&amp;M)</translation>
+    </message>
+    <message>
+        <location filename="../window/tray.cpp" line="38"/>
+        <location filename="../window/tray.cpp" line="38"/>
+        <source>&amp;Quit</source>
+        <translation>退出 (&amp;Q)</translation>
+    </message>
+</context>
 </TS>
