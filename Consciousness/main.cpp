@@ -24,7 +24,11 @@ int main(int argc, char* argv[])
     tray.show_system_tray();
 
     std::shared_ptr<main_window> w;
+    bool is_creating{}; // The callback below is called in interrupt.
     tray.set_on_show_main_window([&]() {
+        if (is_creating)
+            return;
+        is_creating = true;
         if (!w || !w->isVisible())
         {
             w = std::make_shared<main_window>(tray.get_config_store());
@@ -37,6 +41,7 @@ int main(int argc, char* argv[])
         {
             w.reset();
         }
+        is_creating = false;
     });
     return a.exec();
 }
