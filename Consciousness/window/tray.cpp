@@ -16,54 +16,39 @@
 
 tray::tray()
 {
-    create_system_tray_icon();
-    create_menu();
+    ui.setupUi(this);
+    create_system_tray();
 }
 
-void tray::create_system_tray_icon()
-{
-    system_tray = new QSystemTrayIcon(this);
-    system_tray->setToolTip("Consciousness");
-    system_tray->setIcon(QFileIconProvider().icon(QFileIconProvider::File));
-}
-void tray::create_menu()
-{
-    // Create hierarchy.
-    if (menu)
-        delete menu;
-    menu = new QMenu(this);
-    auto* show_main_window_action = new QAction(tr("&Main Window"), menu);
-    menu->addAction(show_main_window_action);
-    menu->addSeparator();
-    auto* quit_action = new QAction(tr("&Quit"), menu);
-    menu->addAction(quit_action);
-    system_tray->setContextMenu(menu);
-
-    // Connect signals.
-    connect(system_tray, &QSystemTrayIcon::activated, this,
-            &tray::show_main_window_proxy);
-    connect(show_main_window_action, &QAction::triggered, this,
-            &tray::show_main_window_proxy);
-    connect(quit_action, &QAction::triggered, this,
-            [this]() { QApplication::quit(); });
-}
-
-void tray::show() { system_tray->show(); }
-
-void tray::show_main_window_proxy()
+void tray::on_action_main_window_triggered()
 {
     if (on_show_main_window)
         on_show_main_window();
 }
-
-void tray::set_on_show_main_window(std::function<void()> on_show_main_window)
-{
-    this->on_show_main_window = on_show_main_window;
-}
+void tray::on_action_quit_triggered() { QApplication::quit(); }
 
 void tray::changeEvent(QEvent* event)
 {
     QWidget::changeEvent(event);
     if (event->type() == QEvent::LanguageChange)
-        create_menu();
+        ui.retranslateUi(this);
+}
+
+void tray::create_system_tray()
+{
+    system_tray = new QSystemTrayIcon(this);
+    system_tray->setToolTip("Consciousness");
+    system_tray->setIcon(QFileIconProvider().icon(QFileIconProvider::File));
+    system_tray->setContextMenu(this);
+
+    // Connect signals.
+    connect(system_tray, &QSystemTrayIcon::activated, this,
+            &tray::on_action_main_window_triggered);
+}
+
+void tray::show_system_tray() { system_tray->show(); }
+
+void tray::set_on_show_main_window(std::function<void()> on_show_main_window)
+{
+    this->on_show_main_window = on_show_main_window;
 }

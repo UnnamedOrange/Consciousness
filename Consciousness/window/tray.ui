@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>tray</class>
+ <widget class="QMenu" name="tray">
+  <property name="title">
+   <string/>
+  </property>
+  <action name="action_main_window">
+   <property name="text">
+    <string>&amp;Main Window</string>
+   </property>
+  </action>
+  <addaction name="action_main_window"/>
+  <addaction name="separator"/>
+  <action name="action_quit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <addaction name="action_quit"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

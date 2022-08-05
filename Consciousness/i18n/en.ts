@@ -67,14 +67,14 @@
 <context>
     <name>tray</name>
     <message>
-        <location filename="../window/tray.cpp" line="35"/>
-        <location filename="../window/tray.cpp" line="35"/>
+        <location filename="../window/tray.ui" line="10"/>
+        <location filename="../window/tray.ui" line="10"/>
         <source>&amp;Main Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/tray.cpp" line="38"/>
-        <location filename="../window/tray.cpp" line="38"/>
+        <location filename="../window/tray.ui" line="17"/>
+        <location filename="../window/tray.ui" line="17"/>
         <source>&amp;Quit</source>
         <translation type="unfinished"></translation>
     </message>

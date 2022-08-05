@@ -9,40 +9,42 @@
 
 #pragma once
 
+#include "ui_tray.h"
+
 #include <functional>
 #include <memory>
 
-#include <QAction>
 #include <QEvent>
 #include <QMenu>
 #include <QSystemTrayIcon>
-#include <QWidget>
 
-class tray : public QWidget
+class tray : public QMenu
 {
     Q_OBJECT
 
 private:
+    Ui::tray ui;
     QSystemTrayIcon* system_tray{};
-    QMenu* menu{};
-    std::function<void()> on_show_main_window;
 
 public:
     tray();
 
 private:
-    void create_system_tray_icon();
-    void create_menu();
-
-public:
-    void show();
+    std::function<void()> on_show_main_window;
 
 private slots:
-    void show_main_window_proxy();
-
-public:
-    void set_on_show_main_window(std::function<void()> on_show_main_window);
+    void on_action_main_window_triggered();
+    void on_action_quit_triggered();
 
 private:
     void changeEvent(QEvent* event) override;
+
+private:
+    void create_system_tray();
+
+public:
+    void show_system_tray();
+
+public:
+    void set_on_show_main_window(std::function<void()> on_show_main_window);
 };
