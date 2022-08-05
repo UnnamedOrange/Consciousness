@@ -1,7 +1,7 @@
 /**
  * @file tray.cpp
  * @author UnnamedOrange
- * @brief Tray system of this app.
+ * @brief Tray system and data center of this app.
  *
  * @copyright Copyright (c) UnnamedOrange. Licensed under the MIT License.
  * See the LICENSE file in the repository root for full license text.
