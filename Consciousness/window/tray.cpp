@@ -31,6 +31,11 @@ tray::tray()
     }
 }
 
+void tray::on_system_tray_activated(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger)
+        on_action_main_window_triggered();
+}
 void tray::on_action_main_window_triggered()
 {
     if (on_show_main_window)
@@ -54,7 +59,7 @@ void tray::create_system_tray()
 
     // Connect signals.
     connect(system_tray, &QSystemTrayIcon::activated, this,
-            &tray::on_action_main_window_triggered);
+            &tray::on_system_tray_activated);
 }
 
 void tray::show_system_tray() { system_tray->show(); }

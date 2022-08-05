@@ -45,6 +45,7 @@ public:
     tray();
 
 private slots:
+    void on_system_tray_activated(QSystemTrayIcon::ActivationReason reason);
     void on_action_main_window_triggered();
     void on_action_quit_triggered();
 
