@@ -27,7 +27,8 @@ private:
     Ui::main_window ui;
 
 public:
-    main_window(QWidget* parent = nullptr);
+    main_window(utils::lock_viewer<consciousness::config_store>& config_store,
+                QWidget* parent = nullptr);
     ~main_window();
 
 private slots:
@@ -51,9 +52,7 @@ private:
     void change_language(const QString& language_code = "");
 
 private:
-    consciousness::config_store _config_store_value;
-    utils::lock_viewer<consciousness::config_store> config_store{
-        _config_store_value};
+    utils::lock_viewer<consciousness::config_store>& config_store;
 
 private:
     void init_list();

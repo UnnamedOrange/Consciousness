@@ -18,6 +18,17 @@ tray::tray()
 {
     ui.setupUi(this);
     create_system_tray();
+
+    auto cs = config_store.lock();
+    try
+    {
+        cs->from_file();
+    }
+    catch (const std::runtime_error& e)
+    {
+        qDebug() << e.what();
+        cs->clear(); // If failed, start with empty list.
+    }
 }
 
 void tray::on_action_main_window_triggered()

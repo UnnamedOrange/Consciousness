@@ -18,6 +18,9 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 
+#include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
+#include <utils/lock_view.hpp>
+
 /**
  * @brief Tray system and data center of this app.
  * The properties of QMenu is not used.
@@ -31,11 +34,15 @@ private:
     Ui::tray ui;
     QSystemTrayIcon* system_tray{};
 
-public:
-    tray();
-
 private:
     std::function<void()> on_show_main_window;
+
+    consciousness::config_store _config_store_value;
+    utils::lock_viewer<consciousness::config_store> config_store{
+        _config_store_value};
+
+public:
+    tray();
 
 private slots:
     void on_action_main_window_triggered();
@@ -59,4 +66,8 @@ public:
      * @brief Set callback function when the action "Main Window" is triggered.
      */
     void set_on_show_main_window(std::function<void()> on_show_main_window);
+    /**
+     * @brief Get reference to config_store.
+     */
+    auto& get_config_store() { return config_store; }
 };

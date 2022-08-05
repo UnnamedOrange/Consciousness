@@ -18,7 +18,10 @@
 #include <core/config_store.h>
 #include <core/record.h>
 
-main_window::main_window(QWidget* parent) : QMainWindow(parent)
+main_window::main_window(
+    utils::lock_viewer<consciousness::config_store>& config_store,
+    QWidget* parent)
+    : QMainWindow(parent), config_store(config_store)
 {
     ui.setupUi(this);
 
@@ -31,16 +34,6 @@ main_window::main_window(QWidget* parent) : QMainWindow(parent)
     }
 
     // Initialize the list.
-    auto cs = config_store.lock();
-    try
-    {
-        cs->from_file();
-    }
-    catch (const std::runtime_error& e)
-    {
-        qDebug() << e.what();
-        cs->clear(); // If failed, start with empty list.
-    }
     init_list();
     enable_edit_widgets(false);
 

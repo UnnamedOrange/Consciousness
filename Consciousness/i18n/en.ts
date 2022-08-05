@@ -52,14 +52,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="180"/>
-        <location filename="../window/main_window.cpp" line="180"/>
+        <location filename="../window/main_window.cpp" line="173"/>
+        <location filename="../window/main_window.cpp" line="173"/>
         <source>New Item...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.cpp" line="191"/>
-        <location filename="../window/main_window.cpp" line="191"/>
+        <location filename="../window/main_window.cpp" line="184"/>
+        <location filename="../window/main_window.cpp" line="184"/>
         <source>(Window name not set)</source>
         <translation type="unfinished"></translation>
     </message>
