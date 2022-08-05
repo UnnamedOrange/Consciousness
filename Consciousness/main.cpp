@@ -43,5 +43,8 @@ int main(int argc, char* argv[])
         }
         is_creating = false;
     });
+
+    tray.call_show_main_window();
+
     return a.exec();
 }

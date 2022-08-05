@@ -68,6 +68,10 @@ public:
      */
     void set_on_show_main_window(std::function<void()> on_show_main_window);
     /**
+     * @brief Call show_main_window() if it is valid.
+     */
+    void call_show_main_window() const;
+    /**
      * @brief Get reference to config_store.
      */
     auto& get_config_store() { return config_store; }
