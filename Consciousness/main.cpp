@@ -39,7 +39,10 @@ int main(int argc, char* argv[])
         }
         else
         {
-            w.reset();
+            if (w->isMinimized())
+                w->showNormal();
+            w->raise();
+            w->activateWindow();
         }
         is_creating = false;
     });
