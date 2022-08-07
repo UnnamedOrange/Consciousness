@@ -19,6 +19,7 @@
 #include <QSystemTrayIcon>
 
 #include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
+#include <core/core.h>
 #include <utils/lock_view.hpp>
 
 /**
@@ -40,6 +41,8 @@ private:
     consciousness::config_store _config_store_value;
     utils::lock_viewer<consciousness::config_store> config_store{
         _config_store_value};
+
+    consciousness::core _core{config_store}; // Define core after config_store.
 
 public:
     tray();
