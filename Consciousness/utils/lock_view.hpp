@@ -19,15 +19,13 @@ namespace utils
     {
     private:
         value_type& _ref;
-        std::recursive_mutex& _mutex;
+        std::lock_guard<std::recursive_mutex> _lock;
 
     public:
         _lock_view(value_type& ref, std::recursive_mutex& mutex)
-            : _ref(ref), _mutex(mutex)
+            : _ref(ref), _lock(mutex)
         {
-            _mutex.lock();
         }
-        ~_lock_view() { _mutex.unlock(); }
         value_type* operator->() { return &_ref; }
         value_type& operator*() { return _ref; }
     };
