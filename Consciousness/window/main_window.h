@@ -16,6 +16,7 @@
 #include <QTranslator>
 
 #include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
+#include <core/core.h>
 #include <utils/i18n.hpp>
 #include <utils/lock_view.hpp>
 
@@ -28,7 +29,7 @@ private:
 
 public:
     main_window(utils::lock_viewer<consciousness::config_store>& config_store,
-                QWidget* parent = nullptr);
+                consciousness::core& core, QWidget* parent = nullptr);
 
 private:
     void closeEvent(QCloseEvent* event);
@@ -55,6 +56,7 @@ private:
 
 private:
     utils::lock_viewer<consciousness::config_store>& config_store;
+    consciousness::core& core;
 
 private:
     void init_list();

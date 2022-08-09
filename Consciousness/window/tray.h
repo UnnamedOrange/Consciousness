@@ -78,4 +78,8 @@ public:
      * @brief Get reference to config_store.
      */
     auto& get_config_store() { return config_store; }
+    /**
+     * @brief Get reference to core.
+     */
+    auto& get_core() { return _core; }
 };

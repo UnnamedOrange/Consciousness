@@ -20,8 +20,8 @@
 
 main_window::main_window(
     utils::lock_viewer<consciousness::config_store>& config_store,
-    QWidget* parent)
-    : QMainWindow(parent), config_store(config_store)
+    consciousness::core& core, QWidget* parent)
+    : QMainWindow(parent), config_store(config_store), core(core)
 {
     ui.setupUi(this);
 
@@ -32,6 +32,9 @@ main_window::main_window(
             language.name, this,
             &main_window::on_action_change_language_triggered);
     }
+
+    // Pause the core.
+    core.set_pause(true);
 
     // Initialize the list.
     init_list();
@@ -47,6 +50,8 @@ void main_window::closeEvent(QCloseEvent* event)
 {
     auto cs = config_store.lock();
     cs->to_file();
+
+    core.set_pause(false);
 }
 
 void main_window::on_action_exit_triggered() { QApplication::quit(); }
