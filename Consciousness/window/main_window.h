@@ -29,7 +29,9 @@ private:
 public:
     main_window(utils::lock_viewer<consciousness::config_store>& config_store,
                 QWidget* parent = nullptr);
-    ~main_window();
+
+private:
+    void closeEvent(QCloseEvent* event);
 
 private slots:
     void on_action_exit_triggered();

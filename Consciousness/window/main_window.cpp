@@ -43,7 +43,7 @@ main_window::main_window(
     connect(ui.listWidget_windows, &QListWidget::itemSelectionChanged, this,
             &main_window::_on_listWidget_windows_selection_changed);
 }
-main_window::~main_window()
+void main_window::closeEvent(QCloseEvent* event)
 {
     auto cs = config_store.lock();
     cs->to_file();
