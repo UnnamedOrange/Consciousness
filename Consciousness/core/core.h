@@ -31,7 +31,7 @@ namespace consciousness
         utils::lock_viewer<consciousness::config_store>& config_store;
 
     private:
-        std::jthread _thread;
+        std::thread _thread;
         std::binary_semaphore _exit_sem{0};
 
     private:
@@ -56,6 +56,10 @@ namespace consciousness
               config_store(config_store)
         {
         }
-        ~core() { _exit_sem.release(); }
+        ~core()
+        {
+            _exit_sem.release();
+            _thread.join();
+        }
     };
 } // namespace consciousness
