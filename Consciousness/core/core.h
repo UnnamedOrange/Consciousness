@@ -29,6 +29,7 @@ namespace consciousness
 
     private:
         utils::lock_viewer<consciousness::config_store>& config_store;
+        bool is_pause{};
 
     private:
         std::thread _thread;
@@ -42,6 +43,8 @@ namespace consciousness
                 if (_exit_sem.try_acquire_for(polling_interval))
                     break;
 
+                if (is_pause)
+                    continue;
                 poll();
             }
         }
@@ -61,5 +64,11 @@ namespace consciousness
             _exit_sem.release();
             _thread.join();
         }
+
+    public:
+        /**
+         * @brief Pause the core.
+         */
+        void set_pause(bool pause) { is_pause = pause; }
     };
 } // namespace consciousness
