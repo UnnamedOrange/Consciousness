@@ -16,7 +16,7 @@
 
 namespace consciousness
 {
-    class config_store : public std::vector<record_t>
+    class config_store : public std::vector<record_ex_t>
     {
     public:
         void from_file(const std::filesystem::path& path = "records.json");

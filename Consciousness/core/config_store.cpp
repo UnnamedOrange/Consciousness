@@ -14,10 +14,10 @@ using namespace consciousness;
 void config_store::from_file(const std::filesystem::path& path)
 {
     auto records = record_converter::from_file(path);
-    static_cast<std::vector<record_t>&>(*this) = records;
+    assign(records.begin(), records.end());
 }
 void config_store::to_file(const std::filesystem::path& path) const
 {
-    record_converter::to_file(static_cast<const std::vector<record_t>&>(*this),
-                              path);
+    std::vector<record_t> records(begin(), end());
+    record_converter::to_file(records, path);
 }
