@@ -43,6 +43,41 @@ namespace consciousness
         std::unordered_map<std::uint32_t, record_status> runtime_status;
 
     private:
+        /**
+         * @brief Maintain runtime_status according to the config_store.
+         */
+        void maintain_runtime_status()
+        {
+            auto cs = config_store.lock();
+
+            // Create a new record_status if it doesn't exist.
+            for (const auto& r : *cs)
+                runtime_status.operator[](r.id);
+
+            // Remove records that are no longer in the config_store.
+            // Considering modification of config_store is rare,
+            // this is not a performance issue.
+            for (auto it = runtime_status.begin(); it != runtime_status.end();)
+            {
+                if (std::find_if(cs->begin(), cs->end(), [&it](const auto& r) {
+                        return r.id == it->first;
+                    }) == cs->end())
+                    it = runtime_status.erase(it);
+                else
+                    ++it;
+            }
+
+            // Update permit.
+            for (auto& [_, s] : runtime_status)
+            {
+                if (s.permit &&
+                    s.previous_permit_time_point + s.previous_permit_duration <
+                        clock::now())
+                    s.permit = false;
+            }
+        }
+
+    private:
         std::thread _thread;
         std::binary_semaphore _exit_sem{0};
 
