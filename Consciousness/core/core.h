@@ -29,6 +29,14 @@ namespace consciousness
     public:
         static constexpr auto polling_interval = std::chrono::milliseconds(500);
 
+        /**
+         * config_store can be accessed by multiple threads.
+         * runtime_status is internal.
+         * Access runtime_status via id from config_store.
+         *
+         * e.g.
+         *     runtime_status[config_store.lock()->back().id]
+         */
     private:
         utils::lock_viewer<consciousness::config_store>& config_store;
         bool is_pause{};
