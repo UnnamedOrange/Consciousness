@@ -12,8 +12,10 @@
 #include <chrono>
 #include <semaphore>
 #include <thread>
+#include <unordered_map>
 
 #include "config_store.h"
+#include "record_status.h"
 #include <utils/lock_view.hpp>
 
 namespace consciousness
@@ -30,6 +32,7 @@ namespace consciousness
     private:
         utils::lock_viewer<consciousness::config_store>& config_store;
         bool is_pause{};
+        std::unordered_map<std::uint32_t, record_status> runtime_status;
 
     private:
         std::thread _thread;
