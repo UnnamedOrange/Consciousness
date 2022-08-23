@@ -91,7 +91,12 @@ namespace consciousness
 
                 if (is_pause)
                     continue;
-                poll();
+
+                {
+                    auto _lock_config = config_store.lock();
+                    maintain_runtime_status();
+                    poll();
+                }
             }
         }
         /**
