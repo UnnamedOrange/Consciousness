@@ -101,6 +101,8 @@ namespace consciousness
         }
         /**
          * @brief Platform dependent polling routine.
+         * - this->runtime_status: Has been maintained before calling poll.
+         * - this->config_store: Iterate it and check each rule.
          */
         void poll();
 
