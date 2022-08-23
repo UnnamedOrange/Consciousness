@@ -9,6 +9,7 @@
 
 #include "../core.h"
 
+#include <filesystem>
 #include <vector>
 
 #include "../record_status.h"
@@ -21,22 +22,57 @@ using namespace consciousness;
 
 using native_handle_t = HWND;
 
+std::u16string get_window_name(native_handle_t hwnd)
 {
-    // TODO.
-    return false;
+    int length = GetWindowTextLengthW(hwnd);
+    if (!length)
+        return std::u16string{};
+    std::wstring result(length + 1, 0);
+    GetWindowTextW(hwnd, result.data(), length + 1);
+    result.resize(length);
+    std::filesystem::path code_convert{std::move(result)};
+    return code_convert.u16string();
+}
+std::u16string get_window_class_name(native_handle_t hwnd)
+{
+    constexpr int max_length = 256;
+    std::wstring result(max_length + 1, 0);
+    int length = GetClassNameW(hwnd, result.data(), max_length + 1);
+    result.resize(length);
+    std::filesystem::path code_convert{std::move(result)};
+    return code_convert.u16string();
+}
+
 bool is_window_matched(native_handle_t hwnd, const record_t& r)
+{
+    if (r.window_name.empty() && r.window_class_name.empty())
+        return false;
+
+    if (!r.window_name.empty() && r.window_name != get_window_name(hwnd))
+        return false;
+    if (!r.window_class_name.empty() &&
+        r.window_class_name != get_window_class_name(hwnd))
+        return false;
+    return true;
 }
 
 std::vector<native_handle_t> find_matched_windows_all(const record_t& r)
 {
     std::vector<native_handle_t> ret;
+    struct param_t
+    {
+        std::reference_wrapper<const record_t> r;
+        std::reference_wrapper<std::vector<native_handle_t>> ret;
+    } param{r, ret};
     EnumWindows(
-        [&r, &ret](HWND hwnd, LPARAM lParam) {
+        [](HWND hwnd, LPARAM lParam) {
+            auto& [r, ret] = *reinterpret_cast<param_t*>(lParam);
             if (is_window_matched(hwnd, r))
-                ret.push_back(hwnd);
+                ret.get().push_back(hwnd);
             return TRUE;
         },
-        static_cast<LPARAM>(0));
+        reinterpret_cast<LPARAM>(&param));
+
     return ret;
 }
 
