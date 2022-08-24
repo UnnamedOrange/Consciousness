@@ -14,7 +14,8 @@ popup::popup(QWidget* parent) : QDialog(parent)
     ui.setupUi(this);
     setAttribute(Qt::WidgetAttribute::WA_QuitOnClose, false);
     setFixedSize(minimumSize());
-    setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+    setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint |
+                   Qt::WindowStaysOnTopHint);
 }
 
 void popup::changeEvent(QEvent* event)
