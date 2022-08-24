@@ -24,6 +24,9 @@ private:
 public:
     explicit popup(QWidget* parent = nullptr);
 
+private slots:
+    void on_dial_minute_valueChanged(int value);
+
 private:
     void changeEvent(QEvent* event) override;
 };

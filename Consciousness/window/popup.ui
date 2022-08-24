@@ -149,6 +149,9 @@
        <height>128</height>
       </size>
      </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
     </widget>
    </item>
    <item>

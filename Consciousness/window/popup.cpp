@@ -14,10 +14,20 @@
 popup::popup(QWidget* parent) : QDialog(parent)
 {
     ui.setupUi(this);
+
+    // Initialize the dialog.
     setAttribute(Qt::WidgetAttribute::WA_QuitOnClose, false);
     ui.verticalLayout->setSizeConstraint(QLayout::SetFixedSize);
     setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint |
                    Qt::WindowStaysOnTopHint);
+
+    // Initialize the labels.
+    on_dial_minute_valueChanged(ui.dial_minute->value());
+}
+
+void popup::on_dial_minute_valueChanged(int value)
+{
+    ui.label_minute->setText(QString("%1").arg(value, 2, 10, QLatin1Char('0')));
 }
 
 void popup::changeEvent(QEvent* event)
