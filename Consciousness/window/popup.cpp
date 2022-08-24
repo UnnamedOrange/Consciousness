@@ -32,6 +32,12 @@ popup::popup(QWidget* parent) : QDialog(parent)
     initialize_question();
 }
 
+void popup::on_edit_answer_textChanged(const QString& arg1)
+{
+    // Enable the OK button according to the answer.
+    ui.buttonBox->button(QDialogButtonBox::StandardButton::Ok)
+        ->setEnabled(question->check(arg1));
+}
 void popup::on_dial_minute_valueChanged(int value)
 {
     ui.label_minute->setText(QString("%1").arg(value, 2, 10, QLatin1Char('0')));

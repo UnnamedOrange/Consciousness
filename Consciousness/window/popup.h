@@ -63,6 +63,7 @@ public:
     explicit popup(QWidget* parent = nullptr);
 
 private slots:
+    void on_edit_answer_textChanged(const QString& arg1);
     void on_dial_minute_valueChanged(int value);
 
 private:
