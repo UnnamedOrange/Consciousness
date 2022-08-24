@@ -58,9 +58,10 @@ private:
 
 private:
     std::shared_ptr<question_base_t> question;
+    uint32_t id;
 
 public:
-    popup(const QString& alias, QWidget* parent = nullptr);
+    popup(uint32_t id, const QString& alias, QWidget* parent = nullptr);
 
 private slots:
     void on_edit_answer_textChanged(const QString& arg1);

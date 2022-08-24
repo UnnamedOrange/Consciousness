@@ -11,7 +11,8 @@
 
 #include <QPushButton>
 
-popup::popup(const QString& alias, QWidget* parent) : QDialog(parent)
+popup::popup(uint32_t id, const QString& alias, QWidget* parent)
+    : QDialog(parent), id(id)
 {
     ui.setupUi(this);
 
