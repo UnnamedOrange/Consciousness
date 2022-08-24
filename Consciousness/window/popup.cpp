@@ -27,6 +27,9 @@ popup::popup(QWidget* parent) : QDialog(parent)
     // Initialize the buttons.
     ui.buttonBox->button(QDialogButtonBox::StandardButton::Ok)
         ->setEnabled(false);
+
+    // Initialize the question.
+    initialize_question();
 }
 
 void popup::on_dial_minute_valueChanged(int value)
@@ -39,4 +42,15 @@ void popup::changeEvent(QEvent* event)
     QDialog::changeEvent(event);
     if (event->type() == QEvent::LanguageChange)
         ui.retranslateUi(this);
+}
+
+void popup::initialize_question()
+{
+    // Generate the question.
+    {
+        question = std::make_shared<question_arithmetic_t>();
+    }
+
+    // Set the question label.
+    ui.label_question->setText(question->get_question());
 }

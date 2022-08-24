@@ -11,8 +11,43 @@
 
 #include "ui_popup.h"
 
+#include <memory>
+#include <random>
+
 #include <QDialog>
 #include <QEvent>
+#include <QString>
+#include <QStringView>
+
+class question_base_t
+{
+public:
+    virtual QString get_question() const = 0;
+    virtual bool check(QStringView answer) const = 0;
+};
+class question_arithmetic_t : public question_base_t
+{
+private:
+    int a, b;
+
+public:
+    question_arithmetic_t()
+    {
+        std::random_device rd;
+        std::default_random_engine e(rd());
+        std::uniform_int_distribution<int> dist(114, 514);
+        a = dist(e);
+        b = dist(e);
+    }
+    QString get_question() const override
+    {
+        return QString("%1 + %2 = ?").arg(a).arg(b);
+    }
+    bool check(QStringView answer) const override
+    {
+        return answer.toInt() == a + b;
+    }
+};
 
 class popup : public QDialog
 {
@@ -20,6 +55,9 @@ class popup : public QDialog
 
 private:
     Ui::popup ui;
+
+private:
+    std::shared_ptr<question_base_t> question;
 
 public:
     explicit popup(QWidget* parent = nullptr);
@@ -29,4 +67,10 @@ private slots:
 
 private:
     void changeEvent(QEvent* event) override;
+
+private:
+    /**
+     * @brief Generate the question and set the question label.
+     */
+    void initialize_question();
 };
