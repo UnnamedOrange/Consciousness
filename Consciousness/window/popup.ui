@@ -28,7 +28,7 @@
      <item>
       <widget class="QLabel" name="label_unused_1">
        <property name="text">
-        <string>You have opened </string>
+        <string>You had opened </string>
        </property>
       </widget>
      </item>

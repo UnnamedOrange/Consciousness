@@ -75,7 +75,7 @@
     <message>
         <location filename="../window/popup.ui" line="31"/>
         <location filename="../window/popup.ui" line="31"/>
-        <source>You have opened </source>
+        <source>You had opened </source>
         <translation>您打开了 </translation>
     </message>
     <message>
