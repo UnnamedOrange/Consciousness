@@ -11,7 +11,7 @@
 
 #include <QPushButton>
 
-popup::popup(QWidget* parent) : QDialog(parent)
+popup::popup(const QString& alias, QWidget* parent) : QDialog(parent)
 {
     ui.setupUi(this);
 
@@ -22,6 +22,7 @@ popup::popup(QWidget* parent) : QDialog(parent)
                    Qt::WindowStaysOnTopHint);
 
     // Initialize the labels.
+    ui.label_alias->setText(alias);
     on_dial_minute_valueChanged(ui.dial_minute->value());
 
     // Initialize the buttons.

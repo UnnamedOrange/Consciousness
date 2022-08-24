@@ -60,7 +60,7 @@ private:
     std::shared_ptr<question_base_t> question;
 
 public:
-    explicit popup(QWidget* parent = nullptr);
+    popup(const QString& alias, QWidget* parent = nullptr);
 
 private slots:
     void on_edit_answer_textChanged(const QString& arg1);
