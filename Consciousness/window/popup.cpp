@@ -44,6 +44,13 @@ void popup::on_dial_minute_valueChanged(int value)
 {
     ui.label_minute->setText(QString("%1").arg(value, 2, 10, QLatin1Char('0')));
 }
+void popup::on_buttonBox_accepted() { done(QDialog::Accepted); }
+void popup::on_buttonBox_rejected() { done(QDialog::Rejected); }
+void popup::on_popup_accepted()
+{
+    emit closed(id, true, ui.dial_minute->value());
+}
+void popup::on_popup_rejected() { emit closed(id, false, 0); }
 
 void popup::changeEvent(QEvent* event)
 {

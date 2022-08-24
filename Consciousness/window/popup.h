@@ -66,6 +66,13 @@ public:
 private slots:
     void on_edit_answer_textChanged(const QString& arg1);
     void on_dial_minute_valueChanged(int value);
+    void on_buttonBox_accepted();
+    void on_buttonBox_rejected();
+    void on_popup_accepted();
+    void on_popup_rejected();
+
+signals:
+    void closed(uint32_t id, bool permit, int minutes);
 
 private:
     void changeEvent(QEvent* event) override;

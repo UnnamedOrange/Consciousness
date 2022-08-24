@@ -31,6 +31,7 @@ void popup_manager::create_popup(uint32_t id, const std::u16string& alias)
 void popup_manager::on_create_popup(uint32_t id, const std::u16string& alias)
 {
     popup* p = new popup(id, QString::fromStdU16String(alias));
+    connect(p, &popup::closed, this, &popup_manager::on_popup_closed);
     p->setAttribute(Qt::WA_DeleteOnClose);
     p->open();
 }
