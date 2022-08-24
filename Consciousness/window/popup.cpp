@@ -9,7 +9,7 @@
 
 #include "popup.h"
 
-#include <QLayout>
+#include <QPushButton>
 
 popup::popup(QWidget* parent) : QDialog(parent)
 {
@@ -23,6 +23,10 @@ popup::popup(QWidget* parent) : QDialog(parent)
 
     // Initialize the labels.
     on_dial_minute_valueChanged(ui.dial_minute->value());
+
+    // Initialize the buttons.
+    ui.buttonBox->button(QDialogButtonBox::StandardButton::Ok)
+        ->setEnabled(false);
 }
 
 void popup::on_dial_minute_valueChanged(int value)
