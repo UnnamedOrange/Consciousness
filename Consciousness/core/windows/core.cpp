@@ -76,6 +76,13 @@ std::vector<native_handle_t> find_matched_windows_all(const record_t& r)
     return ret;
 }
 
+std::u16string get_alias(const record_t& r)
+{
+    if (!r.window_name.empty())
+        return r.window_name;
+    return r.window_class_name;
+}
+
 void core::poll()
 {
     auto cs = config_store.lock();
@@ -120,7 +127,8 @@ void core::poll()
             PostMessageW(hwnd, WM_CLOSE, 0, 0);
         // Popup to let the user decide if he was conscious.
         rule.skip_for_popup = true; // Update rule.
-        // TODO: Design the communication protocol.
+        // Show the popup.
+        pm.create_popup(record.id, get_alias(record));
     }
 }
 

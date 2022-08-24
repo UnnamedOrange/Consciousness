@@ -10,11 +10,13 @@
 #pragma once
 
 #include <chrono>
+#include <queue>
 #include <semaphore>
 #include <thread>
 #include <unordered_map>
 
 #include "config_store.h"
+#include "popup_manager.h"
 #include "record_status.h"
 #include <utils/lock_view.hpp>
 
@@ -41,6 +43,9 @@ namespace consciousness
         utils::lock_viewer<consciousness::config_store>& config_store;
         bool is_pause{};
         std::unordered_map<std::uint32_t, record_status> runtime_status;
+        std::queue<popup_close_t> _popup_queue;
+        utils::lock_viewer<std::queue<popup_close_t>> popup_queue{_popup_queue};
+        popup_manager pm{*this};
 
     private:
         /**
@@ -53,6 +58,25 @@ namespace consciousness
             // Create a new record_status if it doesn't exist.
             for (const auto& r : *cs)
                 runtime_status.operator[](r.id);
+
+            // Update popup.
+            {
+                auto pq = popup_queue.lock();
+                while (!pq->empty())
+                {
+                    auto p = pq->front();
+                    pq->pop();
+                    auto& status = runtime_status[p.id];
+                    status.permit = p.permit;
+                    if (p.permit)
+                    {
+                        status.previous_permit_time_point = clock::now();
+                        status.previous_permit_duration =
+                            std::chrono::minutes(p.minutes);
+                    }
+                    status.skip_for_popup = false;
+                }
+            }
 
             // Remove records that are no longer in the config_store.
             // Considering modification of config_store is rare,
@@ -67,7 +91,7 @@ namespace consciousness
                     ++it;
             }
 
-            // Update permit.
+            // Update outdated permission.
             for (auto& [_, s] : runtime_status)
             {
                 if (s.permit &&
@@ -123,5 +147,14 @@ namespace consciousness
          * @brief Pause the core.
          */
         void set_pause(bool pause) { is_pause = pause; }
+        /**
+         * @brief Notify that a popup has been closed with parameters.
+         *
+         * @note This function is called by main thread.
+         */
+        void notify_popup_closed(const popup_close_t& p)
+        {
+            popup_queue.lock()->push(p);
+        }
     };
 } // namespace consciousness
