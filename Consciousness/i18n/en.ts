@@ -85,14 +85,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/popup.ui" line="108"/>
-        <location filename="../window/popup.ui" line="108"/>
+        <location filename="../window/popup.ui" line="111"/>
+        <location filename="../window/popup.ui" line="111"/>
         <source>I want another </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/popup.ui" line="122"/>
-        <location filename="../window/popup.ui" line="122"/>
+        <location filename="../window/popup.ui" line="125"/>
+        <location filename="../window/popup.ui" line="125"/>
         <source> minutes</source>
         <translation type="unfinished"></translation>
     </message>

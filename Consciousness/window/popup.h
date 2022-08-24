@@ -12,6 +12,7 @@
 #include "ui_popup.h"
 
 #include <QDialog>
+#include <QEvent>
 
 class popup : public QDialog
 {
@@ -22,4 +23,7 @@ private:
 
 public:
     explicit popup(QWidget* parent = nullptr);
+
+private:
+    void changeEvent(QEvent* event) override;
 };

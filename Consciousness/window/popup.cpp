@@ -16,3 +16,14 @@ popup::popup(QWidget* parent) : QDialog(parent)
     setFixedSize(minimumSize());
     setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
 }
+
+void popup::changeEvent(QEvent* event)
+{
+    QDialog::changeEvent(event);
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+        // TODO: Use a scheduler to resize.
+        setFixedSize(minimumSize());
+    }
+}

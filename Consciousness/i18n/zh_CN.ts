@@ -85,14 +85,14 @@
         <translation>您真的有意识吗？</translation>
     </message>
     <message>
-        <location filename="../window/popup.ui" line="108"/>
-        <location filename="../window/popup.ui" line="108"/>
+        <location filename="../window/popup.ui" line="111"/>
+        <location filename="../window/popup.ui" line="111"/>
         <source>I want another </source>
         <translation>我想再使用 </translation>
     </message>
     <message>
-        <location filename="../window/popup.ui" line="122"/>
-        <location filename="../window/popup.ui" line="122"/>
+        <location filename="../window/popup.ui" line="125"/>
+        <location filename="../window/popup.ui" line="125"/>
         <source> minutes</source>
         <translation> 分钟</translation>
     </message>
