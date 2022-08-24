@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Are you consciousness?</string>
+   <string>Are you conscious?</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

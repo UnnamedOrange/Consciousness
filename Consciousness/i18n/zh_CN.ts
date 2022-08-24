@@ -69,7 +69,7 @@
     <message>
         <location filename="../window/popup.ui" line="20"/>
         <location filename="../window/popup.ui" line="20"/>
-        <source>Are you consciousness?</source>
+        <source>Are you conscious?</source>
         <translation>您有意识吗？</translation>
     </message>
     <message>
