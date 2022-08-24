@@ -31,7 +31,8 @@ int main(int argc, char* argv[])
         is_creating = true;
         if (!w || !w->isVisible())
         {
-            w = std::make_shared<main_window>(tray.get_config_store(), tray.get_core());
+            w = std::make_shared<main_window>(tray.get_config_store(),
+                                              tray.get_core());
             w->setAttribute(Qt::WA_QuitOnClose, false);
             w->show();
             w->raise();
