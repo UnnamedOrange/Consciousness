@@ -65,6 +65,14 @@
     </message>
 </context>
 <context>
+    <name>popup</name>
+    <message>
+        <location filename="../window/popup.ui" line="14"/>
+        <source>Are you consciousness?</source>
+        <translation>您有意识吗？</translation>
+    </message>
+</context>
+<context>
     <name>tray</name>
     <message>
         <location filename="../window/tray.ui" line="10"/>
