@@ -67,9 +67,34 @@
 <context>
     <name>popup</name>
     <message>
-        <location filename="../window/popup.ui" line="14"/>
+        <location filename="../window/popup.ui" line="20"/>
+        <location filename="../window/popup.ui" line="20"/>
         <source>Are you consciousness?</source>
         <translation>您有意识吗？</translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="31"/>
+        <location filename="../window/popup.ui" line="31"/>
+        <source>You have opened </source>
+        <translation>您打开了 </translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="66"/>
+        <location filename="../window/popup.ui" line="66"/>
+        <source>Are you really conscious?</source>
+        <translation>您真的有意识吗？</translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="108"/>
+        <location filename="../window/popup.ui" line="108"/>
+        <source>I want another </source>
+        <translation>我想再使用 </translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="122"/>
+        <location filename="../window/popup.ui" line="122"/>
+        <source> minutes</source>
+        <translation> 分钟</translation>
     </message>
 </context>
 <context>

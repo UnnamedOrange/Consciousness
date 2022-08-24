@@ -67,8 +67,33 @@
 <context>
     <name>popup</name>
     <message>
-        <location filename="../window/popup.ui" line="14"/>
+        <location filename="../window/popup.ui" line="20"/>
+        <location filename="../window/popup.ui" line="20"/>
         <source>Are you consciousness?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="31"/>
+        <location filename="../window/popup.ui" line="31"/>
+        <source>You have opened </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="66"/>
+        <location filename="../window/popup.ui" line="66"/>
+        <source>Are you really conscious?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="108"/>
+        <location filename="../window/popup.ui" line="108"/>
+        <source>I want another </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../window/popup.ui" line="122"/>
+        <location filename="../window/popup.ui" line="122"/>
+        <source> minutes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

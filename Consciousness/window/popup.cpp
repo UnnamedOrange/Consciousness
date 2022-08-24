@@ -9,4 +9,10 @@
 
 #include "popup.h"
 
-popup::popup(QWidget* parent) : QDialog(parent) { ui.setupUi(this); }
+popup::popup(QWidget* parent) : QDialog(parent)
+{
+    ui.setupUi(this);
+    setAttribute(Qt::WidgetAttribute::WA_QuitOnClose, false);
+    setFixedSize(minimumSize());
+    setWindowFlags(windowFlags() | Qt::MSWindowsFixedSizeDialogHint);
+}
