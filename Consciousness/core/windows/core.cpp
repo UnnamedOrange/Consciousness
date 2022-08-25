@@ -114,6 +114,8 @@ std::u16string get_alias(const record_t& r)
 {
     if (!r.window_name.empty())
         return r.window_name;
+    if (!r.process_name.empty())
+        return r.process_name;
     return r.window_class_name;
 }
 
