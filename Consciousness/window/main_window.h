@@ -41,6 +41,7 @@ private slots:
     void _on_listWidget_windows_selection_changed();
     void on_lineEdit_window_name_textEdited(const QString& arg1);
     void on_lineEdit_window_class_name_textEdited(const QString& arg1);
+    void on_lineEdit_process_name_textEdited(const QString& arg1);
     void on_button_delete_clicked();
     void on_listWidget_windows_delete_key_pressed();
 

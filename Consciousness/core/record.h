@@ -39,6 +39,9 @@ namespace consciousness
         static constexpr std::u16string_view keyname_window_class_name =
             u"window_class_name";
         std::u16string window_class_name;
+        static constexpr std::u16string_view keyname_process_name =
+            u"process_name";
+        std::u16string process_name;
     };
 
     /**

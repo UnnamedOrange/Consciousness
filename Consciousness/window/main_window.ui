@@ -56,10 +56,10 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout" columnminimumwidth="0,200">
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit_window_name">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
           <property name="text">
-           <string notr="true"/>
+           <string>Window Class Name</string>
           </property>
          </widget>
         </item>
@@ -70,19 +70,29 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Window Class Name</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="lineEdit_window_class_name">
           <property name="text">
            <string notr="true"/>
           </property>
          </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="lineEdit_window_name">
+          <property name="text">
+           <string notr="true"/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Process Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_process_name"/>
         </item>
        </layout>
       </item>

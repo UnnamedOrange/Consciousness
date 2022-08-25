@@ -80,6 +80,7 @@ void main_window::_on_listWidget_windows_selection_changed()
         enable_edit_widgets(false);
         ui.lineEdit_window_name->clear();
         ui.lineEdit_window_class_name->clear();
+        ui.lineEdit_process_name->clear();
         return;
     }
     auto cs = config_store.lock();
@@ -88,6 +89,8 @@ void main_window::_on_listWidget_windows_selection_changed()
         QString::fromStdU16String(record.window_name));
     ui.lineEdit_window_class_name->setText(
         QString::fromStdU16String(record.window_class_name));
+    ui.lineEdit_process_name->setText(
+        QString::fromStdU16String(record.process_name));
     enable_edit_widgets(true);
 }
 void main_window::on_lineEdit_window_name_textEdited(const QString& arg1)
@@ -102,6 +105,12 @@ void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
     int index = ui.listWidget_windows->currentRow();
     auto cs = config_store.lock();
     (*cs)[index].window_class_name = arg1.toStdU16String();
+}
+void main_window::on_lineEdit_process_name_textEdited(const QString& arg1)
+{
+    int index = ui.listWidget_windows->currentRow();
+    auto cs = config_store.lock();
+    (*cs)[index].process_name = arg1.toStdU16String();
 }
 void main_window::on_button_delete_clicked()
 {
@@ -181,6 +190,7 @@ void main_window::enable_edit_widgets(bool enable)
 {
     ui.lineEdit_window_name->setEnabled(enable);
     ui.lineEdit_window_class_name->setEnabled(enable);
+    ui.lineEdit_process_name->setEnabled(enable);
     ui.button_delete->setEnabled(enable);
 }
 QString main_window::handle_window_name(const QString& name)

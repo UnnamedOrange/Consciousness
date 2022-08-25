@@ -24,6 +24,8 @@ QJsonObject record_converter::to_json(std::span<const record_t> records)
             QString::fromStdU16String(record.window_name);
         json_record[record_t::keyname_window_class_name] =
             QString::fromStdU16String(record.window_class_name);
+        json_record[record_t::keyname_process_name] =
+            QString::fromStdU16String(record.process_name);
         json_array.append(json_record);
     }
     QJsonObject json;
@@ -56,6 +58,9 @@ std::vector<record_t> record_converter::from_json(const QJsonObject& json)
             json_record_obj[record_t::keyname_window_class_name]
                 .toString()
                 .toStdU16String();
+        record.process_name = json_record_obj[record_t::keyname_process_name]
+                                  .toString()
+                                  .toStdU16String();
         records.push_back(std::move(record));
     }
     return records;
