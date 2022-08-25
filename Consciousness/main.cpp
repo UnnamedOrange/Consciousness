@@ -10,6 +10,7 @@
 #include <memory>
 
 #include <QApplication>
+#include <SingleApplication.h>
 
 #include <utils/i18n.hpp>
 #include <window/main_window.h>
@@ -17,7 +18,7 @@
 
 int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
+    SingleApplication a(argc, argv);
     utils::i18n::change_language_to_system_default();
 
     tray tray;
