@@ -10,50 +10,50 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="69"/>
-        <location filename="../window/main_window.ui" line="69"/>
+        <location filename="../window/main_window.ui" line="75"/>
+        <location filename="../window/main_window.ui" line="75"/>
         <source>Window Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="62"/>
-        <location filename="../window/main_window.ui" line="62"/>
+        <location filename="../window/main_window.ui" line="65"/>
+        <location filename="../window/main_window.ui" line="65"/>
         <source>Window Class Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="90"/>
-        <location filename="../window/main_window.ui" line="90"/>
+        <location filename="../window/main_window.ui" line="99"/>
+        <location filename="../window/main_window.ui" line="99"/>
         <source>Process Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="117"/>
-        <location filename="../window/main_window.ui" line="117"/>
+        <location filename="../window/main_window.ui" line="129"/>
+        <location filename="../window/main_window.ui" line="129"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="151"/>
-        <location filename="../window/main_window.ui" line="151"/>
+        <location filename="../window/main_window.ui" line="163"/>
+        <location filename="../window/main_window.ui" line="163"/>
         <source>&amp;Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="157"/>
-        <location filename="../window/main_window.ui" line="157"/>
+        <location filename="../window/main_window.ui" line="169"/>
+        <location filename="../window/main_window.ui" line="169"/>
         <source>&amp;Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="167"/>
-        <location filename="../window/main_window.ui" line="167"/>
+        <location filename="../window/main_window.ui" line="179"/>
+        <location filename="../window/main_window.ui" line="179"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../window/main_window.ui" line="172"/>
-        <location filename="../window/main_window.ui" line="172"/>
+        <location filename="../window/main_window.ui" line="184"/>
+        <location filename="../window/main_window.ui" line="184"/>
         <source>System Default</source>
         <translation type="unfinished"></translation>
     </message>
