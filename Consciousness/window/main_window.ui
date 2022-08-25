@@ -180,6 +180,13 @@
    <header location="global">utils/QListWidgetWithKey.hpp</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>listWidget_windows</tabstop>
+  <tabstop>lineEdit_window_name</tabstop>
+  <tabstop>lineEdit_window_class_name</tabstop>
+  <tabstop>lineEdit_process_name</tabstop>
+  <tabstop>button_delete</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
