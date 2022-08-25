@@ -27,31 +27,65 @@ std::u16string get_window_name(native_handle_t hwnd)
     int length = GetWindowTextLengthW(hwnd);
     if (!length)
         return std::u16string{};
-    std::wstring result(length + 1, 0);
-    GetWindowTextW(hwnd, result.data(), length + 1);
-    result.resize(length);
-    std::filesystem::path code_convert{std::move(result)};
+    std::wstring name(length + 1, 0);
+    GetWindowTextW(hwnd, name.data(), length + 1);
+    name.resize(length);
+    std::filesystem::path code_convert{std::move(name)};
     return code_convert.u16string();
 }
 std::u16string get_window_class_name(native_handle_t hwnd)
 {
     constexpr int max_length = 256;
-    std::wstring result(max_length + 1, 0);
-    int length = GetClassNameW(hwnd, result.data(), max_length + 1);
-    result.resize(length);
-    std::filesystem::path code_convert{std::move(result)};
+    std::wstring name(max_length + 1, 0);
+    int length = GetClassNameW(hwnd, name.data(), max_length + 1);
+    name.resize(length);
+    std::filesystem::path code_convert{std::move(name)};
     return code_convert.u16string();
+}
+std::u16string get_process_name(native_handle_t hwnd)
+{
+    constexpr int max_length = MAX_PATH * 10;
+    std::wstring name(max_length + 1, 0);
+    bool success = false;
+    do
+    {
+        DWORD process_id = 0;
+        GetWindowThreadProcessId(hwnd, &process_id);
+        if (!process_id)
+            break;
+
+        HANDLE hprocess =
+            OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, FALSE, process_id);
+        if (!hprocess)
+            break;
+
+        int length = max_length + 1;
+        QueryFullProcessImageNameW(hprocess, 0, name.data(),
+                                   reinterpret_cast<DWORD*>(&length));
+        CloseHandle(hprocess);
+        name.resize(length);
+
+        success = true;
+    } while (false);
+    if (!success)
+        return std::u16string{};
+
+    std::filesystem::path code_convert{std::move(name)};
+    return code_convert.filename().u16string();
 }
 
 bool is_window_matched(native_handle_t hwnd, const record_t& r)
 {
-    if (r.window_name.empty() && r.window_class_name.empty())
+    if (r.window_name.empty() && r.window_class_name.empty() &&
+        r.process_name.empty())
         return false;
 
     if (!r.window_name.empty() && r.window_name != get_window_name(hwnd))
         return false;
     if (!r.window_class_name.empty() &&
         r.window_class_name != get_window_class_name(hwnd))
+        return false;
+    if (!r.process_name.empty() && r.process_name != get_process_name(hwnd))
         return false;
     return true;
 }
