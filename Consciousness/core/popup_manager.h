@@ -17,6 +17,9 @@ namespace consciousness
 {
     class core;
 
+    /**
+     * @brief Struct of user's decision.
+     */
     struct popup_close_t
     {
         uint32_t id;
@@ -24,6 +27,9 @@ namespace consciousness
         int minutes;
     };
 
+    /**
+     * @brief Manage popup dialogs using slots and signals.
+     */
     class popup_manager : public QObject
     {
         Q_OBJECT
@@ -47,15 +53,15 @@ namespace consciousness
         /**
          * @brief Create a popup on main thread.
          */
-        void on_create_popup(uint32_t id, const std::u16string& alias);
+        void _on_create_popup(uint32_t id, const std::u16string& alias);
 
     signals:
         void create_popup_signal(uint32_t id, const std::u16string& alias);
 
     public slots:
         /**
-         * @brief Call from main thread to that the popup has closed.
+         * @brief Call from main thread to notify that the popup has closed.
          */
-        void on_popup_closed(uint32_t id, bool permit, int minutes);
+        void _on_popup_closed(uint32_t id, bool permit, int minutes);
     };
 } // namespace consciousness
