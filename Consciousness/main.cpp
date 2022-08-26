@@ -16,6 +16,10 @@
 #include <window/main_window.h>
 #include <window/tray.h>
 
+/**
+ * @brief Entry of the application.
+ * The background program is on the tray.
+ */
 int main(int argc, char* argv[])
 {
     SingleApplication a(argc, argv);
@@ -36,16 +40,11 @@ int main(int argc, char* argv[])
                                               tray.get_core());
             w->setAttribute(Qt::WA_QuitOnClose, false);
             w->show();
-            w->raise();
-            w->activateWindow();
         }
-        else
-        {
-            if (w->isMinimized())
-                w->showNormal();
-            w->raise();
-            w->activateWindow();
-        }
+        else if (w->isMinimized())
+            w->showNormal();
+        w->raise();
+        w->activateWindow();
         is_creating = false;
     });
 
