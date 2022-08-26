@@ -31,12 +31,12 @@ tray::tray()
     }
 }
 
-void tray::on_system_tray_activated(QSystemTrayIcon::ActivationReason reason)
+void tray::_on_system_tray_activated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason == QSystemTrayIcon::Trigger)
         on_action_main_window_triggered();
 }
-void tray::on_action_main_window_triggered() { call_show_main_window(); }
+void tray::on_action_main_window_triggered() { show_main_window(); }
 void tray::on_action_quit_triggered() { QApplication::quit(); }
 
 void tray::changeEvent(QEvent* event)
@@ -55,17 +55,18 @@ void tray::create_system_tray()
 
     // Connect signals.
     connect(system_tray, &QSystemTrayIcon::activated, this,
-            &tray::on_system_tray_activated);
+            &tray::_on_system_tray_activated);
 }
 
 void tray::show_system_tray() { system_tray->show(); }
 
-void tray::set_on_show_main_window(std::function<void()> on_show_main_window)
+void tray::set_show_main_window_callback(
+    std::function<void()> show_main_window_callback)
 {
-    this->on_show_main_window = on_show_main_window;
+    this->show_main_window_callback = show_main_window_callback;
 }
-void tray::call_show_main_window() const
+void tray::show_main_window() const
 {
-    if (on_show_main_window)
-        on_show_main_window();
+    if (show_main_window_callback)
+        show_main_window_callback();
 }

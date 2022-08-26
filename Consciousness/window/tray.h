@@ -26,6 +26,7 @@
  * @brief Tray system and data center of this app.
  * The properties of QMenu is not used.
  * Call show_system_tray() as show() in usual QWidget.
+ * Use set_show_main_window_callback() to set the action of showing main window.
  */
 class tray : public QMenu
 {
@@ -36,7 +37,7 @@ private:
     QSystemTrayIcon* system_tray{};
 
 private:
-    std::function<void()> on_show_main_window;
+    std::function<void()> show_main_window_callback;
 
     consciousness::config_store _config_store_value;
     utils::lock_viewer<consciousness::config_store> config_store{
@@ -48,14 +49,22 @@ public:
     tray();
 
 private slots:
-    void on_system_tray_activated(QSystemTrayIcon::ActivationReason reason);
+    void _on_system_tray_activated(QSystemTrayIcon::ActivationReason reason);
     void on_action_main_window_triggered();
     void on_action_quit_triggered();
 
 private:
+    /**
+     * @brief Monitor the language change.
+     */
     void changeEvent(QEvent* event) override;
 
 private:
+    /**
+     * @brief Create system tray object and connect signals.
+     *
+     * @note This function is once-called.
+     */
     void create_system_tray();
 
 public:
@@ -69,11 +78,12 @@ public:
     /**
      * @brief Set callback function when the action "Main Window" is triggered.
      */
-    void set_on_show_main_window(std::function<void()> on_show_main_window);
+    void set_show_main_window_callback(
+        std::function<void()> show_main_window_callback);
     /**
-     * @brief Call show_main_window() if it is valid.
+     * @brief Call show_main_window_callback() if it is valid.
      */
-    void call_show_main_window() const;
+    void show_main_window() const;
     /**
      * @brief Get reference to config_store.
      */

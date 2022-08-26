@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 
     std::shared_ptr<main_window> w;
     bool is_creating{}; // The callback below is called in interrupt.
-    tray.set_on_show_main_window([&]() {
+    tray.set_show_main_window_callback([&]() {
         if (is_creating)
             return;
         is_creating = true;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
         is_creating = false;
     });
 
-    tray.call_show_main_window();
+    tray.show_main_window();
 
     return a.exec();
 }
