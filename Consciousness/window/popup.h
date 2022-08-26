@@ -49,6 +49,13 @@ public:
     }
 };
 
+/**
+ * @brief Popup dialog to remind the user to be conscious.
+ * The dialog should be created on the main thread using popup_manager.
+ * It uses slots and signals (closed) to notify the core.
+ * Input: id and alias.
+ * Output: user's dicision.
+ */
 class popup : public QDialog
 {
     Q_OBJECT
@@ -75,6 +82,9 @@ signals:
     void closed(uint32_t id, bool permit, int minutes);
 
 private:
+    /**
+     * @brief Monitor the language change.
+     */
     void changeEvent(QEvent* event) override;
 
 private:
