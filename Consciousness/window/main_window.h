@@ -1,7 +1,7 @@
 /**
  * @file main_window.h
  * @author UnnamedOrange
- * @brief Header for main window.
+ * @brief Main window for configuring the application.
  *
  * @copyright Copyright (c) UnnamedOrange. Licensed under the MIT License.
  * See the LICENSE file in the repository root for full license text.
@@ -20,6 +20,12 @@
 #include <utils/i18n.hpp>
 #include <utils/lock_view.hpp>
 
+/**
+ * @brief Main window for configuring the application.
+ * The core is paused when main window is shown.
+ * On editing the config, the changes to the config_store are valid immediately.
+ * On close, the config_store is saved to the config file.
+ */
 class main_window : public QMainWindow
 {
     Q_OBJECT
@@ -32,6 +38,9 @@ public:
                 consciousness::core& core, QWidget* parent = nullptr);
 
 private:
+    /**
+     * @brief Save config on close.
+     */
     void closeEvent(QCloseEvent* event);
 
 private slots:
@@ -50,9 +59,14 @@ private:
         utils::i18n::available_languages()};
 
 private slots:
-    void on_action_change_language_triggered();
+    void _on_action_change_language_triggered();
 
 private:
+    /**
+     * @brief Change the language of the application.
+     *
+     * @param language_code utils::language_info_t::code.
+     */
     void change_language(const QString& language_code = "");
 
 private:
@@ -60,8 +74,28 @@ private:
     consciousness::core& core;
 
 private:
-    void init_list();
+    /**
+     * @brief Refresh the list.
+     * This function is called when main window is created or
+     * language has been changed.
+     */
+    void refresh_list();
+    /**
+     * @brief Add "New item..." to the list.
+     * The string literal is here for Qt Linguist.
+     */
     void add_dummy_item();
-    void enable_edit_widgets(bool enable);
+    /**
+     * @brief Enable or disable the editing widgets.
+     */
+    void enable_editing_widgets(bool enable);
+    /**
+     * @brief Get the alias of the window to show in the list.
+     *
+     * @todo Rename and rewrite this function.
+     *
+     * @param name The window name.
+     * @return QString The string to show in the list.
+     */
     static QString handle_window_name(const QString& name);
 };

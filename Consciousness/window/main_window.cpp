@@ -1,7 +1,7 @@
 /**
  * @file main_window.cpp
  * @author UnnamedOrange
- * @brief Main window.
+ * @brief Main window for configuring the application.
  *
  * @copyright Copyright (c) UnnamedOrange. Licensed under the MIT License.
  * See the LICENSE file in the repository root for full license text.
@@ -30,15 +30,15 @@ main_window::main_window(
     {
         ui.menu_language->addAction(
             language.name, this,
-            &main_window::on_action_change_language_triggered);
+            &main_window::_on_action_change_language_triggered);
     }
 
     // Pause the core.
     core.set_pause(true);
 
     // Initialize the list.
-    init_list();
-    enable_edit_widgets(false);
+    refresh_list();
+    enable_editing_widgets(false);
 
     // Link signals.
     connect(ui.listWidget_windows, &QListWidget::currentRowChanged, this,
@@ -77,7 +77,7 @@ void main_window::_on_listWidget_windows_selection_changed()
         index = -1;
     if (index == -1 || index == ui.listWidget_windows->count() - 1)
     {
-        enable_edit_widgets(false);
+        enable_editing_widgets(false);
         ui.lineEdit_window_name->clear();
         ui.lineEdit_window_class_name->clear();
         ui.lineEdit_process_name->clear();
@@ -91,7 +91,7 @@ void main_window::_on_listWidget_windows_selection_changed()
         QString::fromStdU16String(record.window_class_name));
     ui.lineEdit_process_name->setText(
         QString::fromStdU16String(record.process_name));
-    enable_edit_widgets(true);
+    enable_editing_widgets(true);
 }
 void main_window::on_lineEdit_window_name_textEdited(const QString& arg1)
 {
@@ -137,7 +137,7 @@ void main_window::on_listWidget_windows_delete_key_pressed()
     on_button_delete_clicked();
 }
 
-void main_window::on_action_change_language_triggered()
+void main_window::_on_action_change_language_triggered()
 {
     QAction* action = qobject_cast<QAction*>(sender());
     QString lang_name = action->text();
@@ -153,10 +153,10 @@ void main_window::change_language(const QString& language_code)
     else
         utils::i18n::change_language(language_code);
     ui.retranslateUi(this);
-    init_list();
+    refresh_list();
 }
 
-void main_window::init_list()
+void main_window::refresh_list()
 {
     auto cs = config_store.lock();
 
@@ -186,7 +186,7 @@ void main_window::add_dummy_item()
 {
     ui.listWidget_windows->addItem(tr("New Item..."));
 }
-void main_window::enable_edit_widgets(bool enable)
+void main_window::enable_editing_widgets(bool enable)
 {
     ui.lineEdit_window_name->setEnabled(enable);
     ui.lineEdit_window_class_name->setEnabled(enable);
