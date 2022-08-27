@@ -110,15 +110,6 @@ std::vector<native_handle_t> find_matched_windows_all(const record_t& r)
     return ret;
 }
 
-std::u16string get_alias(const record_t& r)
-{
-    if (!r.window_name.empty())
-        return r.window_name;
-    if (!r.process_name.empty())
-        return r.process_name;
-    return r.window_class_name;
-}
-
 void core::poll()
 {
     auto cs = config_store.lock();
@@ -164,7 +155,7 @@ void core::poll()
         // Popup to let the user decide if he was conscious.
         rule.skip_for_popup = true; // Update rule.
         // Show the popup.
-        pm.create_popup(record.id, get_alias(record));
+        pm.create_popup(record.id, record.to_string());
     }
 }
 
