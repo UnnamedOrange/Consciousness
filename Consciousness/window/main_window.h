@@ -17,6 +17,7 @@
 
 #include <core/config_store.h> // Shoule be included after QMainWindow. Bug of Qt.
 #include <core/core.h>
+#include <core/record.h>
 #include <utils/i18n.hpp>
 #include <utils/lock_view.hpp>
 
@@ -91,12 +92,7 @@ private:
      */
     void enable_editing_widgets(bool enable);
     /**
-     * @brief Get the alias of the window to show in the list.
-     *
-     * @todo Rename and rewrite this function.
-     *
-     * @param name The window name.
-     * @return QString The string to show in the list.
+     * @brief Get the friendly name of a record to show in the list.
      */
-    static QString handle_window_name(const QString& name);
+    static QString handle_friendly_name(const consciousness::record_t& record);
 };

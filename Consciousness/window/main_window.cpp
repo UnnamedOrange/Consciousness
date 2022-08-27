@@ -64,8 +64,7 @@ void main_window::on_listWidget_windows_itemDoubleClicked(QListWidgetItem* item)
     {
         auto cs = config_store.lock();
         cs->emplace_back();
-        item->setText(handle_window_name(
-            QString::fromStdU16String(cs->back().window_name)));
+        item->setText(handle_friendly_name(cs->back()));
         add_dummy_item();
         _on_listWidget_windows_selection_changed();
     }
@@ -98,27 +97,34 @@ void main_window::_on_listWidget_windows_selection_changed()
 void main_window::on_lineEdit_window_name_textEdited(const QString& arg1)
 {
     int index = ui.listWidget_windows->currentRow();
-    ui.listWidget_windows->currentItem()->setText(handle_window_name(arg1));
     auto cs = config_store.lock();
     (*cs)[index].window_name = arg1.toStdU16String();
+    ui.listWidget_windows->currentItem()->setText(
+        handle_friendly_name((*cs)[index]));
 }
 void main_window::on_lineEdit_window_class_name_textEdited(const QString& arg1)
 {
     int index = ui.listWidget_windows->currentRow();
     auto cs = config_store.lock();
     (*cs)[index].window_class_name = arg1.toStdU16String();
+    ui.listWidget_windows->currentItem()->setText(
+        handle_friendly_name((*cs)[index]));
 }
 void main_window::on_lineEdit_process_name_textEdited(const QString& arg1)
 {
     int index = ui.listWidget_windows->currentRow();
     auto cs = config_store.lock();
     (*cs)[index].process_name = arg1.toStdU16String();
+    ui.listWidget_windows->currentItem()->setText(
+        handle_friendly_name((*cs)[index]));
 }
 void main_window::on_lineEdit_alias_textEdited(const QString& arg1)
 {
     int index = ui.listWidget_windows->currentRow();
     auto cs = config_store.lock();
     (*cs)[index].alias = arg1.toStdU16String();
+    ui.listWidget_windows->currentItem()->setText(
+        handle_friendly_name((*cs)[index]));
 }
 void main_window::on_button_delete_clicked()
 {
@@ -178,10 +184,7 @@ void main_window::refresh_list()
 
     // Add existing items to list.
     for (const auto& item : *cs)
-    {
-        ui.listWidget_windows->addItem(
-            handle_window_name(QString::fromStdU16String(item.window_name)));
-    }
+        ui.listWidget_windows->addItem(handle_friendly_name(item));
 
     // Add a dummy item to list.
     add_dummy_item();
@@ -202,9 +205,10 @@ void main_window::enable_editing_widgets(bool enable)
     ui.lineEdit_alias->setEnabled(enable);
     ui.button_delete->setEnabled(enable);
 }
-QString main_window::handle_window_name(const QString& name)
+QString main_window::handle_friendly_name(const consciousness::record_t& record)
 {
-    if (name.isEmpty())
+    auto friendly_name = QString::fromStdU16String(record.to_string());
+    if (friendly_name.isEmpty())
         return tr("(Window name not set)");
-    return name;
+    return friendly_name;
 }

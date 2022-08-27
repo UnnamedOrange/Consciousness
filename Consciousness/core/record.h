@@ -47,6 +47,22 @@ namespace consciousness
 
         QJsonObject to_json() const;
         static record_t from_json(const QJsonObject& json);
+
+        /**
+         * @brief To a friendly name.
+         */
+        std::u16string to_string() const
+        {
+            if (!alias.empty())
+                return alias;
+            if (!window_name.empty())
+                return window_name;
+            if (!process_name.empty())
+                return process_name;
+            if (!window_class_name.empty())
+                return window_class_name;
+            return std::u16string{};
+        }
     };
 
     /**
