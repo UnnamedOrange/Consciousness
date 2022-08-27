@@ -42,6 +42,9 @@ namespace consciousness
         static constexpr std::u16string_view keyname_process_name =
             u"process_name";
         std::u16string process_name;
+
+        QJsonObject to_json() const;
+        static record_t from_json(const QJsonObject& json);
     };
 
     /**

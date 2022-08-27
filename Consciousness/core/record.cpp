@@ -14,20 +14,36 @@
 
 using namespace consciousness;
 
+QJsonObject record_t::to_json() const
+{
+    QJsonObject json_record;
+    json_record[keyname_window_name] = QString::fromStdU16String(window_name);
+    json_record[keyname_window_class_name] =
+        QString::fromStdU16String(window_class_name);
+    json_record[keyname_process_name] = QString::fromStdU16String(process_name);
+    return json_record;
+}
+record_t record_t::from_json(const QJsonObject& json_record_obj)
+{
+    record_t record;
+    record.window_name = json_record_obj[record_t::keyname_window_name]
+                             .toString()
+                             .toStdU16String();
+    record.window_class_name =
+        json_record_obj[record_t::keyname_window_class_name]
+            .toString()
+            .toStdU16String();
+    record.process_name = json_record_obj[record_t::keyname_process_name]
+                              .toString()
+                              .toStdU16String();
+    return record;
+}
+
 QJsonObject record_converter::to_json(std::span<const record_t> records)
 {
     QJsonArray json_array;
     for (auto& record : records)
-    {
-        QJsonObject json_record;
-        json_record[record_t::keyname_window_name] =
-            QString::fromStdU16String(record.window_name);
-        json_record[record_t::keyname_window_class_name] =
-            QString::fromStdU16String(record.window_class_name);
-        json_record[record_t::keyname_process_name] =
-            QString::fromStdU16String(record.process_name);
-        json_array.append(json_record);
-    }
+        json_array.append(record.to_json());
     QJsonObject json;
     json[record_t::keyname_entry] = json_array;
     return json;
@@ -50,18 +66,7 @@ std::vector<record_t> record_converter::from_json(const QJsonObject& json)
     for (const auto& json_record : json_array)
     {
         const auto& json_record_obj = json_record.toObject();
-        record_t record;
-        record.window_name = json_record_obj[record_t::keyname_window_name]
-                                 .toString()
-                                 .toStdU16String();
-        record.window_class_name =
-            json_record_obj[record_t::keyname_window_class_name]
-                .toString()
-                .toStdU16String();
-        record.process_name = json_record_obj[record_t::keyname_process_name]
-                                  .toString()
-                                  .toStdU16String();
-        records.push_back(std::move(record));
+        records.push_back(record_t::from_json(json_record_obj));
     }
     return records;
 }
