@@ -17,7 +17,7 @@
 
 - [x] `alpha-1`
   - First release.
-- [ ] `alpha-2`
+- [x] `alpha-2`
   - Documentation: README and comments.
   - New features: alias.
   - Code quality: serialization.
