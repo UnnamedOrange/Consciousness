@@ -21,6 +21,7 @@ QJsonObject record_t::to_json() const
     json_record[keyname_window_class_name] =
         QString::fromStdU16String(window_class_name);
     json_record[keyname_process_name] = QString::fromStdU16String(process_name);
+    json_record[keyname_alias] = QString::fromStdU16String(alias);
     return json_record;
 }
 record_t record_t::from_json(const QJsonObject& json_record_obj)
@@ -36,6 +37,8 @@ record_t record_t::from_json(const QJsonObject& json_record_obj)
     record.process_name = json_record_obj[record_t::keyname_process_name]
                               .toString()
                               .toStdU16String();
+    record.alias =
+        json_record_obj[record_t::keyname_alias].toString().toStdU16String();
     return record;
 }
 

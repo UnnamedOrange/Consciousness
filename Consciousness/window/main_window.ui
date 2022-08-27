@@ -59,13 +59,13 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout" columnminimumwidth="0,200">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
           <property name="text">
-           <string>Window Class Name</string>
+           <string>Process Name</string>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_window_class_name</cstring>
+           <cstring>lineEdit_process_name</cstring>
           </property>
          </widget>
         </item>
@@ -79,12 +79,25 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Window Class Name</string>
+          </property>
+          <property name="buddy">
+           <cstring>lineEdit_window_class_name</cstring>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="lineEdit_window_class_name">
           <property name="text">
            <string notr="true"/>
           </property>
          </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="lineEdit_process_name"/>
         </item>
         <item row="0" column="1">
          <widget class="QLineEdit" name="lineEdit_window_name">
@@ -93,18 +106,18 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_4">
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Process Name</string>
+           <string>Alias</string>
           </property>
           <property name="buddy">
-           <cstring>lineEdit_process_name</cstring>
+           <cstring>lineEdit_alias</cstring>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_process_name"/>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="lineEdit_alias"/>
         </item>
        </layout>
       </item>
@@ -197,6 +210,7 @@
   <tabstop>lineEdit_window_name</tabstop>
   <tabstop>lineEdit_window_class_name</tabstop>
   <tabstop>lineEdit_process_name</tabstop>
+  <tabstop>lineEdit_alias</tabstop>
   <tabstop>button_delete</tabstop>
  </tabstops>
  <resources/>
