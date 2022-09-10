@@ -10,7 +10,7 @@
 #include <memory>
 
 #include <QApplication>
-#include <SingleApplication.h>
+#include <singleapplication.h>
 
 #include <utils/i18n.hpp>
 #include <window/main_window.h>
